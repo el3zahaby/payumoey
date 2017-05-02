@@ -41,7 +41,11 @@ class PayumoneyServiceProvider extends ServiceProvider
                 throw new \RuntimeException('missing payumoney configuration: `SALT`');
             }
 
-            if(empty($config['DEBUG'])){
+            if(!isset($config['TEST_MODE'])){
+                throw new \RuntimeException('missing payumoney configuration: `TEST_MODE`');
+            }
+
+            if(!isset($config['DEBUG'])){
                 throw new \RuntimeException('missing payumoney configuration: `DEBUG`');
             }
 
