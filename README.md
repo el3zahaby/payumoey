@@ -42,7 +42,7 @@ get the `config` by running this command.
 php artisan vendor:publish --tag=config
 ```
 
-config option can be found `app/payumoney.php`
+config option can be found `config/payumoney.php`
 
 ```
 
