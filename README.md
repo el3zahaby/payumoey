@@ -5,7 +5,7 @@ Simple Library/Package for accepting payments via [PayUMoney](https://www.payumo
 
 ## Installation
 
-To add this library to your project, simply add a dependency on `niranjan94/payumoney` to your project's `composer.json` file. Here is a minimal example of a composer.json file:
+To add this library to your project, simply add a dependency on `riazxrazor/payumoney` to your project's `composer.json` file. Here is a minimal example of a composer.json file:
 
     {
         "require": {
