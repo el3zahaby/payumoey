@@ -3,7 +3,7 @@
 namespace Riazxrazor\Payumoney;
 
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class Payumoney
 {
@@ -34,22 +34,20 @@ class Payumoney
     /**
      * @param array $options
      */
-    public function __construct(array $options)
+
+    protected $config;
+
+
+    public function __construct(array $options = [], ConfigRepository $config)
     {
-        $resolver = (new OptionsResolver())
-            ->setDefaults(['TEST_MODE' => TRUE,'DEBUG' => FALSE])
-            ->setRequired(['KEY', 'SALT', 'TEST_MODE'])
-            ->setAllowedTypes('KEY', 'string')
-            ->setAllowedTypes('SALT', 'string')
-            ->setAllowedTypes('TEST_MODE', 'bool')
-            ->setAllowedTypes('DEBUG', 'bool');
-
-        $options = $resolver->resolve($options);
-
-        foreach ($options as $key => $value)
-        {
-            $this->{$key} = $value;
+        $this->config = $config;
+        foreach ($options as $key => $value) {
+            $this->config->set("payumoney.{$key}", $value);
         }
+        $this->KEY = $this->config->get("payumoney.KEY");
+        $this->DEBUG = $this->config->get("payumoney.DEBUG");
+        $this->TEST_MODE = $this->config->get("payumoney.TEST_MODE");
+        $this->SALT = $this->config->get("payumoney.SALT");
     }
 
     /**
