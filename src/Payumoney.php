@@ -3,11 +3,10 @@
 namespace Riazxrazor\Payumoney;
 
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class Payumoney
 {
-    const TEST_URL = 'https://test.payu.in/_payment';
+    const TEST_URL = 'https://sandboxsecure.payu.in/_payment';
 
     const PRODUCTION_URL = 'https://secure.payu.in/_payment';
 
@@ -38,16 +37,17 @@ class Payumoney
     protected $config;
 
 
-    public function __construct(array $options = [], ConfigRepository $config)
+    public function __construct(array $options = [])
     {
-        $this->config = $config;
+
         foreach ($options as $key => $value) {
-            $this->config->set("payumoney.{$key}", $value);
+            config(["payumoney.{$key}" =>  $value]);
         }
-        $this->KEY = $this->config->get("payumoney.KEY");
-        $this->DEBUG = $this->config->get("payumoney.DEBUG");
-        $this->TEST_MODE = $this->config->get("payumoney.TEST_MODE");
-        $this->SALT = $this->config->get("payumoney.SALT");
+        $this->config = config('payumoney');
+        $this->KEY = $this->config["KEY"];
+        $this->DEBUG = $this->config["DEBUG"];
+        $this->TEST_MODE = $this->config["TEST_MODE"];
+        $this->SALT = $this->config["SALT"];
     }
 
     /**
