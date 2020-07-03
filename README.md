@@ -3,6 +3,9 @@
 
 Simple Library/Package for accepting payments via [PayUMoney](https://www.payumoney.com/).
 
+### demo project example
+https://github.com/riazXrazor/riazXrazor-payumoey-example
+
 ## Installation
 
 To add this library to your project, simply add a dependency on `riazxrazor/payumoney` to your project's `composer.json` file. Here is a minimal example of a composer.json file:
